@@ -24,3 +24,16 @@ export const getDragList = req => {
   })
   return dragList
 }
+
+export const getConsultData = req => {
+  let consultData = []
+  doCustomTimes(5, () => {
+    consultData.push(Mock.mock({
+      name: '@name',
+      age: '@age',
+      address: '@address',
+      date: '@date'
+    }))
+  })
+  return consultData
+}
