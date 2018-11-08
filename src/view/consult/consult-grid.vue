@@ -4,7 +4,7 @@
     <div style="margin: 10px;overflow: hidden">
         <div style="float: right;">
             <!-- <Page :total="100" :current="1" @on-change="changePage"></Page> -->
-            <Page :total="pageTotal" :current="pageNum" :page-size="pageSize" show-elevator/>
+            <Page :total="pageTotal" :current="pageNum" :page-size="pageSize" @on-change="pageChange" show-elevator/>
         </div>
     </div>
 </div>
@@ -13,24 +13,13 @@
 import { mapActions } from 'vuex'
 export default {
   name: 'consult-grid',
-  created () {
-    console.log('consult-grid created')
-    this.initList()
-  },
-  methods: {
-    ...mapActions([
-      'queryConsultAction'
-    ]),
-    initList () {
-      let this1 = this
-      // this.queryConsultAction({this1.pageTotal, this1.pageNum, this.pageSize, sort, sortType})
-    }
-  },
   data () {
     return {
       pageTotal: 10, // 数据总数
       pageNum: 1, // 初始页
       pageSize: 10, // 每页条数
+      sort :'',
+      sortType: 'desc',
       columns: [
         {
           title: '公司名称',
@@ -84,6 +73,25 @@ export default {
         // }
       ]
     }
+  },
+  methods: {
+    ...mapActions([
+      'queryConsultAction'
+    ]),
+    initList () {
+        let querydata = {}
+        querydata.pageTotal = this.pageTotal
+        querydata.pageNum = this.pageNum
+        querydata.pageSize = this.pageSize
+       this.queryConsultAction(querydata)
+    },
+    pageChange(index){
+        console.log('pageChange' + index)
+    }
+  },
+  created () {
+    console.log('consult-grid created')
+    this.initList()
   }
 }
 </script>

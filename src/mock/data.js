@@ -26,6 +26,7 @@ export const getDragList = req => {
 }
 
 export const getConsultData = req => {
+  console.log('in consult mock11')
   let consultData = []
   doCustomTimes(5, () => {
     consultData.push(Mock.mock({
