@@ -26,15 +26,25 @@ export const getDragList = req => {
 }
 
 export const getConsultData = req => {
-  console.log('in consult mock11')
   let consultData = []
+
   doCustomTimes(5, () => {
     consultData.push(Mock.mock({
       name: '@name',
-      age: '@age',
-      address: '@address',
+      age: '@email',
+      address: '@region',
       date: '@date'
     }))
   })
-  return consultData
+  let res = {
+    code: '0',
+    msg: 'ok',
+    data: {
+      listData: consultData,
+      pageSize: 10,
+      pageNum: 5,
+      pageTotal: 100
+    }
+  }
+  return res
 }

@@ -4,17 +4,24 @@ import { setToken, getToken } from '@/libs/util'
 export default {
   name: 'ConsultGrid',
   state: {
-    name: '',
-    age: '',
-    address: '',
-    token: getToken(),
-    date: '',
+    pageTotal: '',
+    pageNum: '',
+    pageSize: '',
+    gridData:[],
     hasGetInfo: false
   },
   mutations: {
-    setToken (state, token) {
-      state.token = token
-      setToken(token)
+    setGridDate(state, gridData){
+      state.gridData = gridData
+    },
+    setPageTotal(state, pageTotal){
+      state.pageTotal = pageTotal
+    },
+    setPageNum(state, pageNum){
+      state.pageNum = pageNum
+    },
+    setPageSize(state, pageSize){
+      state.pageSize = pageSize
     }
   },
   actions: {
@@ -26,9 +33,11 @@ export default {
         queryConsult({
           pageTotal, pageNum, pageSize, sort, sortType
         }).then(res => {
-          const data = res.data
-          commit('setToken', data.token)
-          resolve()
+          const data = res.data.data.listData
+          commit('setPageSize', res.data.data.pageSize)
+          commit('setPageTotal', res.data.data.pageTotal)
+          commit('setPageNum', res.data.data.pageNum)
+          resolve(data)
         }).catch(err => {
           reject(err)
         })
