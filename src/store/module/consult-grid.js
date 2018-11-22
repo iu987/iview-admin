@@ -26,12 +26,12 @@ export default {
   },
   actions: {
     // 咨询表格查询
-    queryConsultAction ({ commit }, {pageTotal, pageNum, pageSize, sort, sortType}) {
+    queryConsultAction ({ commit }, {companyName, insuranceName, contactName, contactPhone, pageNum, pageSize, sort, sortType}) {
       console.log('in queryConsultAction')
       pageSize == null ? 10 : pageSize
       return new Promise((resolve, reject) => {
         queryConsult({
-          pageTotal, pageNum, pageSize, sort, sortType
+          companyName, insuranceName, contactName, contactPhone, pageNum, pageSize, sort, sortType
         }).then(res => {
           const data = res.data.data.listData
           commit('setPageSize', res.data.data.pageSize)

@@ -49,15 +49,15 @@ export default [
       }
     ]
   },
-  {
-    path: '',
-    name: 'doc',
-    meta: {
-      title: '文档',
-      href: 'https://lison16.github.io/iview-admin-doc/#/',
-      icon: 'ios-book'
-    }
-  },
+  // {
+  //   path: '',
+  //   name: 'doc',
+  //   meta: {
+  //     title: '文档',
+  //     href: 'https://lison16.github.io/iview-admin-doc/#/',
+  //     icon: 'ios-book'
+  //   }
+  // },
   {
     path: '/consult',
     name:'consult',
@@ -91,7 +91,7 @@ export default [
         name: 'level_2_1',
         meta: {
           icon: 'md-funnel',
-          title: '二级-1'
+          title: '导入-1'
         },
         component: () => import('@/view/multilevel/level-2-1.vue')
       },
@@ -122,7 +122,7 @@ export default [
         name: 'level_2_3',
         meta: {
           icon: 'md-funnel',
-          title: '二级-3'
+          title: '导入-2'
         },
         component: () => import('@/view/multilevel/level-2-3.vue')
       }

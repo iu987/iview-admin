@@ -10,7 +10,7 @@ const USER_MAP = {
   admin: {
     name: 'admin',
     user_id: '2',
-    access: ['admin'],
+    access: ['super_admin', 'admin'],
     token: 'admin',
     avator: 'https://avatars0.githubusercontent.com/u/20942571?s=460&v=4'
   }
@@ -29,3 +29,4 @@ export const getUserInfo = req => {
 export const logout = req => {
   return null
 }
+

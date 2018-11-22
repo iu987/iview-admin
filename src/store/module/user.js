@@ -40,9 +40,13 @@ export default {
           userName,
           password
         }).then(res => {
-          const data = res.data
-          commit('setToken', data.token)
-          resolve()
+          if(res.data && res.data.code === '0'){
+            const data = res.data.data
+            commit('setToken', data.token)
+            resolve()
+          }else{
+            reject(res.data.msg)
+          }
         }).catch(err => {
           reject(err)
         })
@@ -51,17 +55,16 @@ export default {
     // 退出登录
     handleLogOut ({ state, commit }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
-          commit('setToken', '')
-          commit('setAccess', [])
-          resolve()
-        }).catch(err => {
-          reject(err)
-        })
-        // 如果你的退出登录无需请求接口，则可以直接使用下面三行代码而无需使用logout调用接口
-        // commit('setToken', '')
-        // commit('setAccess', [])
-        // resolve()
+        // logout(state.token).then(() => {
+        //   commit('setToken', '')
+        //   commit('setAccess', [])
+        //   resolve()
+        // }).catch(err => {
+        //   reject(err)
+        // })
+        commit('setToken', '')
+        commit('setAccess', [])
+        resolve()
       })
     },
     // 获取用户相关信息
@@ -69,15 +72,23 @@ export default {
       return new Promise((resolve, reject) => {
         try {
           getUserInfo(state.token).then(res => {
-            const data = res.data
-            commit('setAvator', data.avator)
-            commit('setUserName', data.name)
-            commit('setUserId', data.user_id)
-            commit('setAccess', data.access)
-            commit('setHasGetInfo', true)
-            resolve(data)
+            if(res.status ===200 ){
+              if(res.data.code === '0'){
+                const data = res.data.data
+                commit('setAvator', data.avator)
+                commit('setUserName', data.name)
+                commit('setUserId', data.user_id)
+                commit('setAccess', data.access)
+                commit('setHasGetInfo', true)
+                resolve(data)
+              }else{
+                reject(res.msg)
+              }
+            }else{
+              reject('服务超时，请重新提交')
+            }
           }).catch(err => {
-            reject(err)
+            reject('服务异常，请重新提交')
           })
         } catch (error) {
           reject(error)

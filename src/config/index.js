@@ -12,11 +12,12 @@ export default {
   /**
    * @description api请求基础路径
    */
-  baseUrl: {
-  //  dev: 'https://www.easy-mock.com/mock/5add9213ce4d0e69998a6f51/iview-admin/',
-    dev: 'https://www.easy-mock.com/mock/5be3fe657793476267aa75e7/iview',
-    pro: 'https://produce.com'
-  },
+  // baseUrl: {
+  // //  dev: 'https://www.easy-mock.com/mock/5add9213ce4d0e69998a6f51/iview-admin/',
+  //   dev: 'https://www.easy-mock.com/mock/5be3fe657793476267aa75e7/iview',
+  //   pro: 'https://produce.com'
+  // },
+  baseUrl: process.env.VUE_APP_API_BASE,
   /**
    * @description 默认打开的首页的路由name值，默认为home
    */
@@ -29,5 +30,9 @@ export default {
     //   showInHeader: true, // 设为false后不会在顶部显示错误日志徽标
     //   developmentOff: false // 设为true后在开发环境不会收集错误信息，方便开发中排查错误
     // }
+  },
+  build:{
+    assetsPublicPath:'/admin/'
   }
+  
 }
