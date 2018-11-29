@@ -17,7 +17,10 @@ export default {
   //   dev: 'https://www.easy-mock.com/mock/5be3fe657793476267aa75e7/iview',
   //   pro: 'https://produce.com'
   // },
-  baseUrl: process.env.VUE_APP_API_BASE,
+  //baseUrl: process.env.VUE_APP_API_BASE,
+
+  baseUrl: process.env.NODE_ENV === 'production'? 'https://txapi.jd.com/': process.env.NODE_ENV === 'uat'?'http://10.222.9.241:8080/group-insurance/':'http://localhost:8080',
+
   /**
    * @description 默认打开的首页的路由name值，默认为home
    */

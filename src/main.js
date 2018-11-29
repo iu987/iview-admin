@@ -14,6 +14,8 @@ import './index.less'
 import '@/assets/icons/iconfont.css'
 // 实际打包时应该不引入mock
 /* eslint-disable */
+console.log(process.env.NODE_ENV)
+console.log(process.env.VUE_APP_API_BASE)
 if (process.env.NODE_ENV !== 'production') require('@/mock')
 
 Vue.use(iView, {
